@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carl - Discord AutoMod Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        .container {
+            text-align: center;
+            width: 60%;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .chat-input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        .filter-button {
+            background-color: #FF4500;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .filter-button:hover {
+            background-color: #FF6347;
+        }
+        .filtered-message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Meet Carl</h1>
+        <p>Carl is your personal Discord AutoMod bot. He filters inappropriate content and keeps your server safe!</p>
+
+        <input type="text" class="chat-input" id="userMessage" placeholder="Type a message..." />
+
+        <button class="filter-button" onclick="filterMessage()">Filter Message</button>
+
+        <div class="filtered-message" id="filteredMessage"></div>
+    </div>
+
+    <script>
+        const bannedWords = ['fuck', 'shit',];
+
+        function filterMessage() {
+            let message = document.getElementById('userMessage').value;
+            let filtered = message;
+
+            bannedWords.forEach(word => {
+                const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                filtered = filtered.replace(regex, '****');
+            });
+
+            document.getElementById('filteredMessage').innerText = filtered || "No message provided.";
+        }
+    </script>
+
+</body>
+</html>
