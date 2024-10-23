@@ -34,6 +34,8 @@
             border-radius: 5px;
             margin-top: 20px;
             font-size: 1rem;
+            background-color: #555;
+            color: #fff;
         }
         .filter-button {
             background-color: #FF4500;
@@ -67,17 +69,19 @@
     </div>
 
     <script>
-        const bannedWords = ['fuck', 'shit',];
+        const bannedWords = ['fuck', 'shit'];
 
         function filterMessage() {
-            let message = document.getElementById('userMessage').value;
+            const message = document.getElementById('userMessage').value;
             let filtered = message;
 
+            // Replace banned words with "****"
             bannedWords.forEach(word => {
                 const regex = new RegExp(`\\b${word}\\b`, 'gi');
                 filtered = filtered.replace(regex, '****');
             });
 
+            // Show the filtered message
             document.getElementById('filteredMessage').innerText = filtered || "No message provided.";
         }
     </script>
